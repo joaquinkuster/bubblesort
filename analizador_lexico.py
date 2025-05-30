@@ -9,10 +9,10 @@ from ply import lex
 # Definición de tokens
 tokens = (
     # Palabras reservadas
-    'PRINCIPAL', 'INCLUIR', 'BIBLIOTECA', 'TAMANIO_DE'
+    'PRINCIPAL', 'INCLUIR', 'BIBLIOTECA', 'TAMANIO_DE',
     
     # Estructuras de control y funciones
-    'SI', 'SI_NO', 'MIENTRAS', 'PARA', 'HACER', 'RETORNAR',
+    'SI', 'PARA', 'RETORNAR',
     
     # Tipos de datos
     'ENTERO', 'VACIO',
@@ -24,17 +24,16 @@ tokens = (
     'SUMA', 'RESTA', 'PRODUCTO', 'DIVISION', 
     
     # Operadores de asignación y condicionales
-    'ASIGNACION', 'IGUAL_QUE', 'DIFERENTE_QUE', 'MENOR_QUE', 'MENOR_IGUAL_QUE', 
-    'MAYOR_QUE', 'MAYOR_IGUAL_QUE', 'Y_LOGICO', 'O_LOGICO', 'NEGACION',
+    'ASIGNACION', 'MENOR_QUE', 'MAYOR_QUE', 
     
-    # Incremento y decremento
-    'INCREMENTO', 'DECREMENTO',
+    # Incremento
+    'INCREMENTO', 
     
     # Aperturas y cierres de estructuras de control y funciones
     'LLAVE_IZQ', 'LLAVE_DER', 'PARENTESIS_IZQ', 'PARENTESIS_DER','CORCHETE_IZQ', 'CORCHETE_DER',
     
     # Operadores de entrada/salida
-    'ESCRIBIR', 'IMPRIMIR', 'REFERENCIA', 'PORCENTAJE',
+    'IMPRIMIR',  
     
     # Puntuación
     'PUNTO_Y_COMA', 'COMA'
@@ -47,15 +46,8 @@ t_PRODUCTO = r'\*'
 t_DIVISION = r'/'
 
 t_ASIGNACION = r'='
-t_IGUAL_QUE = r'=='
-t_DIFERENTE_QUE = r'!='
 t_MENOR_QUE = r'<'
-t_MENOR_IGUAL_QUE = r'<='
 t_MAYOR_QUE = r'>'
-t_MAYOR_IGUAL_QUE = r'>='
-t_Y_LOGICO = r'&&'
-t_O_LOGICO = r'\|\|'
-t_NEGACION = r'!'
 
 t_PARENTESIS_IZQ = r'\('
 t_PARENTESIS_DER = r'\)'
@@ -68,10 +60,6 @@ t_PUNTO_Y_COMA = r';'
 t_COMA = r','
 
 t_INCREMENTO = r'\+\+'
-t_DECREMENTO = r'--'
-
-t_REFERENCIA = r'&'
-t_PORCENTAJE = r'%'
 
 # Expresiones regulares para tokens más complejos
 def t_NUMERO(t):
@@ -93,10 +81,10 @@ def t_INCLUIR(t):
 # Palabras reservadas
 reservadas = {
     'main': 'PRINCIPAL', 'sizeof': 'TAMANIO_DE',
-    'if': 'SI', 'else': 'SI_NO', 'while': 'MIENTRAS', 'for': 'PARA', 'do': 'HACER',
+    'if': 'SI', 'for': 'PARA',
     'return': 'RETORNAR', 
     'void': 'VACIO', 'int': 'ENTERO',
-    'scanf': 'ESCRIBIR', 'printf': 'IMPRIMIR'
+    'printf': 'IMPRIMIR',
 }
 
 # Identificadores y palabras reservadas
@@ -160,7 +148,6 @@ int main() {
     }
 
     return 0;
-}
 }
 '''
 

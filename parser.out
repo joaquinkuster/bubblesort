@@ -1,0 +1,2143 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_declarativas lista_funciones
+Rule 2     lista_declarativas -> declarativa
+Rule 3     lista_declarativas -> declarativa lista_declarativas
+Rule 4     declarativa -> inclusion
+Rule 5     inclusion -> INCLUIR BIBLIOTECA
+Rule 6     lista_funciones -> definicion_funcion
+Rule 7     lista_funciones -> definicion_funcion lista_funciones
+Rule 8     definicion_funcion -> funcion_principal
+Rule 9     definicion_funcion -> funcion_general
+Rule 10    funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+Rule 11    funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque
+Rule 12    funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+Rule 13    funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque
+Rule 14    lista_parametros -> parametro COMA lista_parametros
+Rule 15    lista_parametros -> parametro
+Rule 16    lista_parametros -> VACIO
+Rule 17    parametro -> tipo IDENTIFICADOR
+Rule 18    parametro -> tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER
+Rule 19    bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER
+Rule 20    bloque -> LLAVE_IZQ LLAVE_DER
+Rule 21    lista_instrucciones -> instruccion
+Rule 22    lista_instrucciones -> instruccion lista_instrucciones
+Rule 23    instruccion -> declaracion
+Rule 24    instruccion -> sentencia
+Rule 25    instruccion -> estructura_de_control
+Rule 26    declaracion -> declaracion_variable PUNTO_Y_COMA
+Rule 27    declaracion_variable -> tipo lista_identificadores
+Rule 28    lista_identificadores -> IDENTIFICADOR
+Rule 29    lista_identificadores -> IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array
+Rule 30    lista_identificadores -> IDENTIFICADOR ASIGNACION expresion
+Rule 31    lista_identificadores -> IDENTIFICADOR COMA lista_identificadores
+Rule 32    lista_identificadores -> IDENTIFICADOR ASIGNACION expresion COMA lista_identificadores
+Rule 33    elementos_array -> LLAVE_IZQ lista_valores LLAVE_DER
+Rule 34    lista_valores -> NUMERO
+Rule 35    lista_valores -> NUMERO COMA lista_valores
+Rule 36    sentencia -> asignacion PUNTO_Y_COMA
+Rule 37    sentencia -> llamado_a_funcion PUNTO_Y_COMA
+Rule 38    sentencia -> retorno PUNTO_Y_COMA
+Rule 39    asignacion -> IDENTIFICADOR ASIGNACION expresion
+Rule 40    asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion
+Rule 41    asignacion -> IDENTIFICADOR INCREMENTO
+Rule 42    condicion -> expresion MENOR_QUE expresion
+Rule 43    condicion -> expresion MAYOR_QUE expresion
+Rule 44    tipo -> ENTERO
+Rule 45    tipo -> VACIO
+Rule 46    expresion -> expresion SUMA expresion
+Rule 47    expresion -> expresion RESTA expresion
+Rule 48    expresion -> expresion PRODUCTO expresion
+Rule 49    expresion -> expresion DIVISION expresion
+Rule 50    expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER
+Rule 51    expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+Rule 52    expresion -> NUMERO
+Rule 53    expresion -> IDENTIFICADOR
+Rule 54    expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+Rule 55    expresion -> llamado_a_funcion
+Rule 56    llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+Rule 57    llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+Rule 58    lista_argumentos -> argumento COMA lista_argumentos
+Rule 59    lista_argumentos -> argumento
+Rule 60    lista_argumentos -> VACIO
+Rule 61    argumento -> expresion
+Rule 62    argumento -> CADENA
+Rule 63    retorno -> RETORNAR expresion
+Rule 64    retorno -> RETORNAR
+Rule 65    estructura_de_control -> seleccion
+Rule 66    estructura_de_control -> iteracion
+Rule 67    seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque
+Rule 68    iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+
+Terminals, with rules where they appear
+
+ASIGNACION           : 29 30 32 39 40
+BIBLIOTECA           : 5
+CADENA               : 62
+COMA                 : 14 31 32 35 58
+CORCHETE_DER         : 18 29 40 54
+CORCHETE_IZQ         : 18 29 40 54
+DIVISION             : 49
+ENTERO               : 10 11 44
+IDENTIFICADOR        : 12 13 17 18 28 29 30 31 32 39 40 41 53 54 56
+IMPRIMIR             : 57
+INCLUIR              : 5
+INCREMENTO           : 41
+LLAVE_DER            : 19 20 33
+LLAVE_IZQ            : 19 20 33
+MAYOR_QUE            : 43
+MENOR_QUE            : 42
+NUMERO               : 34 35 52
+PARA                 : 68
+PARENTESIS_DER       : 10 11 12 13 50 51 56 57 67 68
+PARENTESIS_IZQ       : 10 11 12 13 50 51 56 57 67 68
+PRINCIPAL            : 10 11
+PRODUCTO             : 48
+PUNTO_Y_COMA         : 26 36 37 38 68 68
+RESTA                : 47
+RETORNAR             : 63 64
+SI                   : 67
+SUMA                 : 46
+TAMANIO_DE           : 51
+VACIO                : 16 45 60
+error                : 
+
+Nonterminals, with rules where they appear
+
+argumento            : 58 59
+asignacion           : 36 68
+bloque               : 10 11 12 13 67 68
+condicion            : 67 68
+declaracion          : 23
+declaracion_variable : 26 68
+declarativa          : 2 3
+definicion_funcion   : 6 7
+elementos_array      : 29
+estructura_de_control : 25
+expresion            : 30 32 39 40 40 42 42 43 43 46 46 47 47 48 48 49 49 50 51 54 61 63
+funcion_general      : 9
+funcion_principal    : 8
+inclusion            : 4
+instruccion          : 21 22
+iteracion            : 66
+lista_argumentos     : 56 57 58
+lista_declarativas   : 1 3
+lista_funciones      : 1 7
+lista_identificadores : 27 31 32
+lista_instrucciones  : 19 22
+lista_parametros     : 10 12 14
+lista_valores        : 33 35
+llamado_a_funcion    : 37 55
+parametro            : 14 15
+programa             : 0
+retorno              : 38
+seleccion            : 65
+sentencia            : 24
+tipo                 : 12 13 17 18 27
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_declarativas lista_funciones
+    (2) lista_declarativas -> . declarativa
+    (3) lista_declarativas -> . declarativa lista_declarativas
+    (4) declarativa -> . inclusion
+    (5) inclusion -> . INCLUIR BIBLIOTECA
+
+    INCLUIR         shift and go to state 5
+
+    programa                       shift and go to state 1
+    lista_declarativas             shift and go to state 2
+    declarativa                    shift and go to state 3
+    inclusion                      shift and go to state 4
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_declarativas . lista_funciones
+    (6) lista_funciones -> . definicion_funcion
+    (7) lista_funciones -> . definicion_funcion lista_funciones
+    (8) definicion_funcion -> . funcion_principal
+    (9) definicion_funcion -> . funcion_general
+    (10) funcion_principal -> . ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (11) funcion_principal -> . ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque
+    (12) funcion_general -> . tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (13) funcion_general -> . tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    ENTERO          shift and go to state 10
+    VACIO           shift and go to state 12
+
+    lista_funciones                shift and go to state 6
+    definicion_funcion             shift and go to state 7
+    funcion_principal              shift and go to state 8
+    funcion_general                shift and go to state 9
+    tipo                           shift and go to state 11
+
+state 3
+
+    (2) lista_declarativas -> declarativa .
+    (3) lista_declarativas -> declarativa . lista_declarativas
+    (2) lista_declarativas -> . declarativa
+    (3) lista_declarativas -> . declarativa lista_declarativas
+    (4) declarativa -> . inclusion
+    (5) inclusion -> . INCLUIR BIBLIOTECA
+
+    ENTERO          reduce using rule 2 (lista_declarativas -> declarativa .)
+    VACIO           reduce using rule 2 (lista_declarativas -> declarativa .)
+    INCLUIR         shift and go to state 5
+
+    declarativa                    shift and go to state 3
+    lista_declarativas             shift and go to state 13
+    inclusion                      shift and go to state 4
+
+state 4
+
+    (4) declarativa -> inclusion .
+
+    INCLUIR         reduce using rule 4 (declarativa -> inclusion .)
+    ENTERO          reduce using rule 4 (declarativa -> inclusion .)
+    VACIO           reduce using rule 4 (declarativa -> inclusion .)
+
+
+state 5
+
+    (5) inclusion -> INCLUIR . BIBLIOTECA
+
+    BIBLIOTECA      shift and go to state 14
+
+
+state 6
+
+    (1) programa -> lista_declarativas lista_funciones .
+
+    $end            reduce using rule 1 (programa -> lista_declarativas lista_funciones .)
+
+
+state 7
+
+    (6) lista_funciones -> definicion_funcion .
+    (7) lista_funciones -> definicion_funcion . lista_funciones
+    (6) lista_funciones -> . definicion_funcion
+    (7) lista_funciones -> . definicion_funcion lista_funciones
+    (8) definicion_funcion -> . funcion_principal
+    (9) definicion_funcion -> . funcion_general
+    (10) funcion_principal -> . ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (11) funcion_principal -> . ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque
+    (12) funcion_general -> . tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (13) funcion_general -> . tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    $end            reduce using rule 6 (lista_funciones -> definicion_funcion .)
+    ENTERO          shift and go to state 10
+    VACIO           shift and go to state 12
+
+    definicion_funcion             shift and go to state 7
+    lista_funciones                shift and go to state 15
+    funcion_principal              shift and go to state 8
+    funcion_general                shift and go to state 9
+    tipo                           shift and go to state 11
+
+state 8
+
+    (8) definicion_funcion -> funcion_principal .
+
+    ENTERO          reduce using rule 8 (definicion_funcion -> funcion_principal .)
+    VACIO           reduce using rule 8 (definicion_funcion -> funcion_principal .)
+    $end            reduce using rule 8 (definicion_funcion -> funcion_principal .)
+
+
+state 9
+
+    (9) definicion_funcion -> funcion_general .
+
+    ENTERO          reduce using rule 9 (definicion_funcion -> funcion_general .)
+    VACIO           reduce using rule 9 (definicion_funcion -> funcion_general .)
+    $end            reduce using rule 9 (definicion_funcion -> funcion_general .)
+
+
+state 10
+
+    (10) funcion_principal -> ENTERO . PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (11) funcion_principal -> ENTERO . PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque
+    (44) tipo -> ENTERO .
+
+    PRINCIPAL       shift and go to state 16
+    IDENTIFICADOR   reduce using rule 44 (tipo -> ENTERO .)
+
+
+state 11
+
+    (12) funcion_general -> tipo . IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (13) funcion_general -> tipo . IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque
+
+    IDENTIFICADOR   shift and go to state 17
+
+
+state 12
+
+    (45) tipo -> VACIO .
+
+    IDENTIFICADOR   reduce using rule 45 (tipo -> VACIO .)
+
+
+state 13
+
+    (3) lista_declarativas -> declarativa lista_declarativas .
+
+    ENTERO          reduce using rule 3 (lista_declarativas -> declarativa lista_declarativas .)
+    VACIO           reduce using rule 3 (lista_declarativas -> declarativa lista_declarativas .)
+
+
+state 14
+
+    (5) inclusion -> INCLUIR BIBLIOTECA .
+
+    INCLUIR         reduce using rule 5 (inclusion -> INCLUIR BIBLIOTECA .)
+    ENTERO          reduce using rule 5 (inclusion -> INCLUIR BIBLIOTECA .)
+    VACIO           reduce using rule 5 (inclusion -> INCLUIR BIBLIOTECA .)
+
+
+state 15
+
+    (7) lista_funciones -> definicion_funcion lista_funciones .
+
+    $end            reduce using rule 7 (lista_funciones -> definicion_funcion lista_funciones .)
+
+
+state 16
+
+    (10) funcion_principal -> ENTERO PRINCIPAL . PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (11) funcion_principal -> ENTERO PRINCIPAL . PARENTESIS_IZQ PARENTESIS_DER bloque
+
+    PARENTESIS_IZQ  shift and go to state 18
+
+
+state 17
+
+    (12) funcion_general -> tipo IDENTIFICADOR . PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque
+    (13) funcion_general -> tipo IDENTIFICADOR . PARENTESIS_IZQ PARENTESIS_DER bloque
+
+    PARENTESIS_IZQ  shift and go to state 19
+
+
+state 18
+
+    (10) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ . lista_parametros PARENTESIS_DER bloque
+    (11) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ . PARENTESIS_DER bloque
+    (14) lista_parametros -> . parametro COMA lista_parametros
+    (15) lista_parametros -> . parametro
+    (16) lista_parametros -> . VACIO
+    (17) parametro -> . tipo IDENTIFICADOR
+    (18) parametro -> . tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    PARENTESIS_DER  shift and go to state 22
+    VACIO           shift and go to state 24
+    ENTERO          shift and go to state 20
+
+    lista_parametros               shift and go to state 21
+    parametro                      shift and go to state 23
+    tipo                           shift and go to state 25
+
+state 19
+
+    (12) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ . lista_parametros PARENTESIS_DER bloque
+    (13) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ . PARENTESIS_DER bloque
+    (14) lista_parametros -> . parametro COMA lista_parametros
+    (15) lista_parametros -> . parametro
+    (16) lista_parametros -> . VACIO
+    (17) parametro -> . tipo IDENTIFICADOR
+    (18) parametro -> . tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    PARENTESIS_DER  shift and go to state 27
+    VACIO           shift and go to state 24
+    ENTERO          shift and go to state 20
+
+    tipo                           shift and go to state 25
+    lista_parametros               shift and go to state 26
+    parametro                      shift and go to state 23
+
+state 20
+
+    (44) tipo -> ENTERO .
+
+    IDENTIFICADOR   reduce using rule 44 (tipo -> ENTERO .)
+
+
+state 21
+
+    (10) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros . PARENTESIS_DER bloque
+
+    PARENTESIS_DER  shift and go to state 28
+
+
+state 22
+
+    (11) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER . bloque
+    (19) bloque -> . LLAVE_IZQ lista_instrucciones LLAVE_DER
+    (20) bloque -> . LLAVE_IZQ LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 30
+
+    bloque                         shift and go to state 29
+
+state 23
+
+    (14) lista_parametros -> parametro . COMA lista_parametros
+    (15) lista_parametros -> parametro .
+
+    COMA            shift and go to state 31
+    PARENTESIS_DER  reduce using rule 15 (lista_parametros -> parametro .)
+
+
+state 24
+
+    (16) lista_parametros -> VACIO .
+    (45) tipo -> VACIO .
+
+    PARENTESIS_DER  reduce using rule 16 (lista_parametros -> VACIO .)
+    IDENTIFICADOR   reduce using rule 45 (tipo -> VACIO .)
+
+
+state 25
+
+    (17) parametro -> tipo . IDENTIFICADOR
+    (18) parametro -> tipo . IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER
+
+    IDENTIFICADOR   shift and go to state 32
+
+
+state 26
+
+    (12) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros . PARENTESIS_DER bloque
+
+    PARENTESIS_DER  shift and go to state 33
+
+
+state 27
+
+    (13) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER . bloque
+    (19) bloque -> . LLAVE_IZQ lista_instrucciones LLAVE_DER
+    (20) bloque -> . LLAVE_IZQ LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 30
+
+    bloque                         shift and go to state 34
+
+state 28
+
+    (10) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER . bloque
+    (19) bloque -> . LLAVE_IZQ lista_instrucciones LLAVE_DER
+    (20) bloque -> . LLAVE_IZQ LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 30
+
+    bloque                         shift and go to state 35
+
+state 29
+
+    (11) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque .
+
+    ENTERO          reduce using rule 11 (funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque .)
+    VACIO           reduce using rule 11 (funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque .)
+    $end            reduce using rule 11 (funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ PARENTESIS_DER bloque .)
+
+
+state 30
+
+    (19) bloque -> LLAVE_IZQ . lista_instrucciones LLAVE_DER
+    (20) bloque -> LLAVE_IZQ . LLAVE_DER
+    (21) lista_instrucciones -> . instruccion
+    (22) lista_instrucciones -> . instruccion lista_instrucciones
+    (23) instruccion -> . declaracion
+    (24) instruccion -> . sentencia
+    (25) instruccion -> . estructura_de_control
+    (26) declaracion -> . declaracion_variable PUNTO_Y_COMA
+    (36) sentencia -> . asignacion PUNTO_Y_COMA
+    (37) sentencia -> . llamado_a_funcion PUNTO_Y_COMA
+    (38) sentencia -> . retorno PUNTO_Y_COMA
+    (65) estructura_de_control -> . seleccion
+    (66) estructura_de_control -> . iteracion
+    (27) declaracion_variable -> . tipo lista_identificadores
+    (39) asignacion -> . IDENTIFICADOR ASIGNACION expresion
+    (40) asignacion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion
+    (41) asignacion -> . IDENTIFICADOR INCREMENTO
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (63) retorno -> . RETORNAR expresion
+    (64) retorno -> . RETORNAR
+    (67) seleccion -> . SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque
+    (68) iteracion -> . PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    LLAVE_DER       shift and go to state 37
+    IDENTIFICADOR   shift and go to state 49
+    IMPRIMIR        shift and go to state 50
+    RETORNAR        shift and go to state 51
+    SI              shift and go to state 52
+    PARA            shift and go to state 53
+    ENTERO          shift and go to state 20
+    VACIO           shift and go to state 12
+
+    lista_instrucciones            shift and go to state 36
+    instruccion                    shift and go to state 38
+    declaracion                    shift and go to state 39
+    sentencia                      shift and go to state 40
+    estructura_de_control          shift and go to state 41
+    declaracion_variable           shift and go to state 42
+    asignacion                     shift and go to state 43
+    llamado_a_funcion              shift and go to state 44
+    retorno                        shift and go to state 45
+    seleccion                      shift and go to state 46
+    iteracion                      shift and go to state 47
+    tipo                           shift and go to state 48
+
+state 31
+
+    (14) lista_parametros -> parametro COMA . lista_parametros
+    (14) lista_parametros -> . parametro COMA lista_parametros
+    (15) lista_parametros -> . parametro
+    (16) lista_parametros -> . VACIO
+    (17) parametro -> . tipo IDENTIFICADOR
+    (18) parametro -> . tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    VACIO           shift and go to state 24
+    ENTERO          shift and go to state 20
+
+    parametro                      shift and go to state 23
+    lista_parametros               shift and go to state 54
+    tipo                           shift and go to state 25
+
+state 32
+
+    (17) parametro -> tipo IDENTIFICADOR .
+    (18) parametro -> tipo IDENTIFICADOR . CORCHETE_IZQ CORCHETE_DER
+
+    COMA            reduce using rule 17 (parametro -> tipo IDENTIFICADOR .)
+    PARENTESIS_DER  reduce using rule 17 (parametro -> tipo IDENTIFICADOR .)
+    CORCHETE_IZQ    shift and go to state 55
+
+
+state 33
+
+    (12) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER . bloque
+    (19) bloque -> . LLAVE_IZQ lista_instrucciones LLAVE_DER
+    (20) bloque -> . LLAVE_IZQ LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 30
+
+    bloque                         shift and go to state 56
+
+state 34
+
+    (13) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque .
+
+    ENTERO          reduce using rule 13 (funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque .)
+    VACIO           reduce using rule 13 (funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque .)
+    $end            reduce using rule 13 (funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ PARENTESIS_DER bloque .)
+
+
+state 35
+
+    (10) funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .
+
+    ENTERO          reduce using rule 10 (funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .)
+    VACIO           reduce using rule 10 (funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .)
+    $end            reduce using rule 10 (funcion_principal -> ENTERO PRINCIPAL PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .)
+
+
+state 36
+
+    (19) bloque -> LLAVE_IZQ lista_instrucciones . LLAVE_DER
+
+    LLAVE_DER       shift and go to state 57
+
+
+state 37
+
+    (20) bloque -> LLAVE_IZQ LLAVE_DER .
+
+    ENTERO          reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    VACIO           reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    $end            reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    IDENTIFICADOR   reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    IMPRIMIR        reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    RETORNAR        reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    SI              reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    PARA            reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+    LLAVE_DER       reduce using rule 20 (bloque -> LLAVE_IZQ LLAVE_DER .)
+
+
+state 38
+
+    (21) lista_instrucciones -> instruccion .
+    (22) lista_instrucciones -> instruccion . lista_instrucciones
+    (21) lista_instrucciones -> . instruccion
+    (22) lista_instrucciones -> . instruccion lista_instrucciones
+    (23) instruccion -> . declaracion
+    (24) instruccion -> . sentencia
+    (25) instruccion -> . estructura_de_control
+    (26) declaracion -> . declaracion_variable PUNTO_Y_COMA
+    (36) sentencia -> . asignacion PUNTO_Y_COMA
+    (37) sentencia -> . llamado_a_funcion PUNTO_Y_COMA
+    (38) sentencia -> . retorno PUNTO_Y_COMA
+    (65) estructura_de_control -> . seleccion
+    (66) estructura_de_control -> . iteracion
+    (27) declaracion_variable -> . tipo lista_identificadores
+    (39) asignacion -> . IDENTIFICADOR ASIGNACION expresion
+    (40) asignacion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion
+    (41) asignacion -> . IDENTIFICADOR INCREMENTO
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (63) retorno -> . RETORNAR expresion
+    (64) retorno -> . RETORNAR
+    (67) seleccion -> . SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque
+    (68) iteracion -> . PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    LLAVE_DER       reduce using rule 21 (lista_instrucciones -> instruccion .)
+    IDENTIFICADOR   shift and go to state 49
+    IMPRIMIR        shift and go to state 50
+    RETORNAR        shift and go to state 51
+    SI              shift and go to state 52
+    PARA            shift and go to state 53
+    ENTERO          shift and go to state 20
+    VACIO           shift and go to state 12
+
+    instruccion                    shift and go to state 38
+    lista_instrucciones            shift and go to state 58
+    declaracion                    shift and go to state 39
+    sentencia                      shift and go to state 40
+    estructura_de_control          shift and go to state 41
+    declaracion_variable           shift and go to state 42
+    asignacion                     shift and go to state 43
+    llamado_a_funcion              shift and go to state 44
+    retorno                        shift and go to state 45
+    seleccion                      shift and go to state 46
+    iteracion                      shift and go to state 47
+    tipo                           shift and go to state 48
+
+state 39
+
+    (23) instruccion -> declaracion .
+
+    IDENTIFICADOR   reduce using rule 23 (instruccion -> declaracion .)
+    IMPRIMIR        reduce using rule 23 (instruccion -> declaracion .)
+    RETORNAR        reduce using rule 23 (instruccion -> declaracion .)
+    SI              reduce using rule 23 (instruccion -> declaracion .)
+    PARA            reduce using rule 23 (instruccion -> declaracion .)
+    ENTERO          reduce using rule 23 (instruccion -> declaracion .)
+    VACIO           reduce using rule 23 (instruccion -> declaracion .)
+    LLAVE_DER       reduce using rule 23 (instruccion -> declaracion .)
+
+
+state 40
+
+    (24) instruccion -> sentencia .
+
+    IDENTIFICADOR   reduce using rule 24 (instruccion -> sentencia .)
+    IMPRIMIR        reduce using rule 24 (instruccion -> sentencia .)
+    RETORNAR        reduce using rule 24 (instruccion -> sentencia .)
+    SI              reduce using rule 24 (instruccion -> sentencia .)
+    PARA            reduce using rule 24 (instruccion -> sentencia .)
+    ENTERO          reduce using rule 24 (instruccion -> sentencia .)
+    VACIO           reduce using rule 24 (instruccion -> sentencia .)
+    LLAVE_DER       reduce using rule 24 (instruccion -> sentencia .)
+
+
+state 41
+
+    (25) instruccion -> estructura_de_control .
+
+    IDENTIFICADOR   reduce using rule 25 (instruccion -> estructura_de_control .)
+    IMPRIMIR        reduce using rule 25 (instruccion -> estructura_de_control .)
+    RETORNAR        reduce using rule 25 (instruccion -> estructura_de_control .)
+    SI              reduce using rule 25 (instruccion -> estructura_de_control .)
+    PARA            reduce using rule 25 (instruccion -> estructura_de_control .)
+    ENTERO          reduce using rule 25 (instruccion -> estructura_de_control .)
+    VACIO           reduce using rule 25 (instruccion -> estructura_de_control .)
+    LLAVE_DER       reduce using rule 25 (instruccion -> estructura_de_control .)
+
+
+state 42
+
+    (26) declaracion -> declaracion_variable . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 59
+
+
+state 43
+
+    (36) sentencia -> asignacion . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 60
+
+
+state 44
+
+    (37) sentencia -> llamado_a_funcion . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 61
+
+
+state 45
+
+    (38) sentencia -> retorno . PUNTO_Y_COMA
+
+    PUNTO_Y_COMA    shift and go to state 62
+
+
+state 46
+
+    (65) estructura_de_control -> seleccion .
+
+    IDENTIFICADOR   reduce using rule 65 (estructura_de_control -> seleccion .)
+    IMPRIMIR        reduce using rule 65 (estructura_de_control -> seleccion .)
+    RETORNAR        reduce using rule 65 (estructura_de_control -> seleccion .)
+    SI              reduce using rule 65 (estructura_de_control -> seleccion .)
+    PARA            reduce using rule 65 (estructura_de_control -> seleccion .)
+    ENTERO          reduce using rule 65 (estructura_de_control -> seleccion .)
+    VACIO           reduce using rule 65 (estructura_de_control -> seleccion .)
+    LLAVE_DER       reduce using rule 65 (estructura_de_control -> seleccion .)
+
+
+state 47
+
+    (66) estructura_de_control -> iteracion .
+
+    IDENTIFICADOR   reduce using rule 66 (estructura_de_control -> iteracion .)
+    IMPRIMIR        reduce using rule 66 (estructura_de_control -> iteracion .)
+    RETORNAR        reduce using rule 66 (estructura_de_control -> iteracion .)
+    SI              reduce using rule 66 (estructura_de_control -> iteracion .)
+    PARA            reduce using rule 66 (estructura_de_control -> iteracion .)
+    ENTERO          reduce using rule 66 (estructura_de_control -> iteracion .)
+    VACIO           reduce using rule 66 (estructura_de_control -> iteracion .)
+    LLAVE_DER       reduce using rule 66 (estructura_de_control -> iteracion .)
+
+
+state 48
+
+    (27) declaracion_variable -> tipo . lista_identificadores
+    (28) lista_identificadores -> . IDENTIFICADOR
+    (29) lista_identificadores -> . IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array
+    (30) lista_identificadores -> . IDENTIFICADOR ASIGNACION expresion
+    (31) lista_identificadores -> . IDENTIFICADOR COMA lista_identificadores
+    (32) lista_identificadores -> . IDENTIFICADOR ASIGNACION expresion COMA lista_identificadores
+
+    IDENTIFICADOR   shift and go to state 64
+
+    lista_identificadores          shift and go to state 63
+
+state 49
+
+    (39) asignacion -> IDENTIFICADOR . ASIGNACION expresion
+    (40) asignacion -> IDENTIFICADOR . CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion
+    (41) asignacion -> IDENTIFICADOR . INCREMENTO
+    (56) llamado_a_funcion -> IDENTIFICADOR . PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    ASIGNACION      shift and go to state 65
+    CORCHETE_IZQ    shift and go to state 66
+    INCREMENTO      shift and go to state 67
+    PARENTESIS_IZQ  shift and go to state 68
+
+
+state 50
+
+    (57) llamado_a_funcion -> IMPRIMIR . PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 69
+
+
+state 51
+
+    (63) retorno -> RETORNAR . expresion
+    (64) retorno -> RETORNAR .
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PUNTO_Y_COMA    reduce using rule 64 (retorno -> RETORNAR .)
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 70
+    llamado_a_funcion              shift and go to state 75
+
+state 52
+
+    (67) seleccion -> SI . PARENTESIS_IZQ condicion PARENTESIS_DER bloque
+
+    PARENTESIS_IZQ  shift and go to state 76
+
+
+state 53
+
+    (68) iteracion -> PARA . PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+
+    PARENTESIS_IZQ  shift and go to state 77
+
+
+state 54
+
+    (14) lista_parametros -> parametro COMA lista_parametros .
+
+    PARENTESIS_DER  reduce using rule 14 (lista_parametros -> parametro COMA lista_parametros .)
+
+
+state 55
+
+    (18) parametro -> tipo IDENTIFICADOR CORCHETE_IZQ . CORCHETE_DER
+
+    CORCHETE_DER    shift and go to state 78
+
+
+state 56
+
+    (12) funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .
+
+    ENTERO          reduce using rule 12 (funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .)
+    VACIO           reduce using rule 12 (funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .)
+    $end            reduce using rule 12 (funcion_general -> tipo IDENTIFICADOR PARENTESIS_IZQ lista_parametros PARENTESIS_DER bloque .)
+
+
+state 57
+
+    (19) bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .
+
+    ENTERO          reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    VACIO           reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    $end            reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    IDENTIFICADOR   reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    IMPRIMIR        reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    RETORNAR        reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    SI              reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    PARA            reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+    LLAVE_DER       reduce using rule 19 (bloque -> LLAVE_IZQ lista_instrucciones LLAVE_DER .)
+
+
+state 58
+
+    (22) lista_instrucciones -> instruccion lista_instrucciones .
+
+    LLAVE_DER       reduce using rule 22 (lista_instrucciones -> instruccion lista_instrucciones .)
+
+
+state 59
+
+    (26) declaracion -> declaracion_variable PUNTO_Y_COMA .
+
+    IDENTIFICADOR   reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    IMPRIMIR        reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    RETORNAR        reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    SI              reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    PARA            reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    ENTERO          reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    VACIO           reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+    LLAVE_DER       reduce using rule 26 (declaracion -> declaracion_variable PUNTO_Y_COMA .)
+
+
+state 60
+
+    (36) sentencia -> asignacion PUNTO_Y_COMA .
+
+    IDENTIFICADOR   reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    IMPRIMIR        reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    RETORNAR        reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    SI              reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    PARA            reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    ENTERO          reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    VACIO           reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+    LLAVE_DER       reduce using rule 36 (sentencia -> asignacion PUNTO_Y_COMA .)
+
+
+state 61
+
+    (37) sentencia -> llamado_a_funcion PUNTO_Y_COMA .
+
+    IDENTIFICADOR   reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    IMPRIMIR        reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    RETORNAR        reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    SI              reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    PARA            reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    ENTERO          reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    VACIO           reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+    LLAVE_DER       reduce using rule 37 (sentencia -> llamado_a_funcion PUNTO_Y_COMA .)
+
+
+state 62
+
+    (38) sentencia -> retorno PUNTO_Y_COMA .
+
+    IDENTIFICADOR   reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    IMPRIMIR        reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    RETORNAR        reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    SI              reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    PARA            reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    ENTERO          reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    VACIO           reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+    LLAVE_DER       reduce using rule 38 (sentencia -> retorno PUNTO_Y_COMA .)
+
+
+state 63
+
+    (27) declaracion_variable -> tipo lista_identificadores .
+
+    PUNTO_Y_COMA    reduce using rule 27 (declaracion_variable -> tipo lista_identificadores .)
+
+
+state 64
+
+    (28) lista_identificadores -> IDENTIFICADOR .
+    (29) lista_identificadores -> IDENTIFICADOR . CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array
+    (30) lista_identificadores -> IDENTIFICADOR . ASIGNACION expresion
+    (31) lista_identificadores -> IDENTIFICADOR . COMA lista_identificadores
+    (32) lista_identificadores -> IDENTIFICADOR . ASIGNACION expresion COMA lista_identificadores
+
+    PUNTO_Y_COMA    reduce using rule 28 (lista_identificadores -> IDENTIFICADOR .)
+    CORCHETE_IZQ    shift and go to state 79
+    ASIGNACION      shift and go to state 80
+    COMA            shift and go to state 81
+
+
+state 65
+
+    (39) asignacion -> IDENTIFICADOR ASIGNACION . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 82
+    llamado_a_funcion              shift and go to state 75
+
+state 66
+
+    (40) asignacion -> IDENTIFICADOR CORCHETE_IZQ . expresion CORCHETE_DER ASIGNACION expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 83
+    llamado_a_funcion              shift and go to state 75
+
+state 67
+
+    (41) asignacion -> IDENTIFICADOR INCREMENTO .
+
+    PUNTO_Y_COMA    reduce using rule 41 (asignacion -> IDENTIFICADOR INCREMENTO .)
+    PARENTESIS_DER  reduce using rule 41 (asignacion -> IDENTIFICADOR INCREMENTO .)
+
+
+state 68
+
+    (56) llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ . lista_argumentos PARENTESIS_DER
+    (58) lista_argumentos -> . argumento COMA lista_argumentos
+    (59) lista_argumentos -> . argumento
+    (60) lista_argumentos -> . VACIO
+    (61) argumento -> . expresion
+    (62) argumento -> . CADENA
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    VACIO           shift and go to state 86
+    CADENA          shift and go to state 88
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    lista_argumentos               shift and go to state 84
+    argumento                      shift and go to state 85
+    expresion                      shift and go to state 87
+    llamado_a_funcion              shift and go to state 75
+
+state 69
+
+    (57) llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ . lista_argumentos PARENTESIS_DER
+    (58) lista_argumentos -> . argumento COMA lista_argumentos
+    (59) lista_argumentos -> . argumento
+    (60) lista_argumentos -> . VACIO
+    (61) argumento -> . expresion
+    (62) argumento -> . CADENA
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    VACIO           shift and go to state 86
+    CADENA          shift and go to state 88
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    lista_argumentos               shift and go to state 89
+    argumento                      shift and go to state 85
+    expresion                      shift and go to state 87
+    llamado_a_funcion              shift and go to state 75
+
+state 70
+
+    (63) retorno -> RETORNAR expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PUNTO_Y_COMA    reduce using rule 63 (retorno -> RETORNAR expresion .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 71
+
+    (50) expresion -> PARENTESIS_IZQ . expresion PARENTESIS_DER
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 94
+    llamado_a_funcion              shift and go to state 75
+
+state 72
+
+    (51) expresion -> TAMANIO_DE . PARENTESIS_IZQ expresion PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 95
+
+
+state 73
+
+    (52) expresion -> NUMERO .
+
+    SUMA            reduce using rule 52 (expresion -> NUMERO .)
+    RESTA           reduce using rule 52 (expresion -> NUMERO .)
+    PRODUCTO        reduce using rule 52 (expresion -> NUMERO .)
+    DIVISION        reduce using rule 52 (expresion -> NUMERO .)
+    PUNTO_Y_COMA    reduce using rule 52 (expresion -> NUMERO .)
+    PARENTESIS_DER  reduce using rule 52 (expresion -> NUMERO .)
+    CORCHETE_DER    reduce using rule 52 (expresion -> NUMERO .)
+    COMA            reduce using rule 52 (expresion -> NUMERO .)
+    MENOR_QUE       reduce using rule 52 (expresion -> NUMERO .)
+    MAYOR_QUE       reduce using rule 52 (expresion -> NUMERO .)
+
+
+state 74
+
+    (53) expresion -> IDENTIFICADOR .
+    (54) expresion -> IDENTIFICADOR . CORCHETE_IZQ expresion CORCHETE_DER
+    (56) llamado_a_funcion -> IDENTIFICADOR . PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    SUMA            reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    RESTA           reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    PRODUCTO        reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    DIVISION        reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    PUNTO_Y_COMA    reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    PARENTESIS_DER  reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    CORCHETE_DER    reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    COMA            reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    MENOR_QUE       reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    MAYOR_QUE       reduce using rule 53 (expresion -> IDENTIFICADOR .)
+    CORCHETE_IZQ    shift and go to state 96
+    PARENTESIS_IZQ  shift and go to state 68
+
+
+state 75
+
+    (55) expresion -> llamado_a_funcion .
+
+    SUMA            reduce using rule 55 (expresion -> llamado_a_funcion .)
+    RESTA           reduce using rule 55 (expresion -> llamado_a_funcion .)
+    PRODUCTO        reduce using rule 55 (expresion -> llamado_a_funcion .)
+    DIVISION        reduce using rule 55 (expresion -> llamado_a_funcion .)
+    PUNTO_Y_COMA    reduce using rule 55 (expresion -> llamado_a_funcion .)
+    PARENTESIS_DER  reduce using rule 55 (expresion -> llamado_a_funcion .)
+    CORCHETE_DER    reduce using rule 55 (expresion -> llamado_a_funcion .)
+    COMA            reduce using rule 55 (expresion -> llamado_a_funcion .)
+    MENOR_QUE       reduce using rule 55 (expresion -> llamado_a_funcion .)
+    MAYOR_QUE       reduce using rule 55 (expresion -> llamado_a_funcion .)
+
+
+state 76
+
+    (67) seleccion -> SI PARENTESIS_IZQ . condicion PARENTESIS_DER bloque
+    (42) condicion -> . expresion MENOR_QUE expresion
+    (43) condicion -> . expresion MAYOR_QUE expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    condicion                      shift and go to state 97
+    expresion                      shift and go to state 98
+    llamado_a_funcion              shift and go to state 75
+
+state 77
+
+    (68) iteracion -> PARA PARENTESIS_IZQ . declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+    (27) declaracion_variable -> . tipo lista_identificadores
+    (44) tipo -> . ENTERO
+    (45) tipo -> . VACIO
+
+    ENTERO          shift and go to state 20
+    VACIO           shift and go to state 12
+
+    declaracion_variable           shift and go to state 99
+    tipo                           shift and go to state 48
+
+state 78
+
+    (18) parametro -> tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER .
+
+    COMA            reduce using rule 18 (parametro -> tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER .)
+    PARENTESIS_DER  reduce using rule 18 (parametro -> tipo IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER .)
+
+
+state 79
+
+    (29) lista_identificadores -> IDENTIFICADOR CORCHETE_IZQ . CORCHETE_DER ASIGNACION elementos_array
+
+    CORCHETE_DER    shift and go to state 100
+
+
+state 80
+
+    (30) lista_identificadores -> IDENTIFICADOR ASIGNACION . expresion
+    (32) lista_identificadores -> IDENTIFICADOR ASIGNACION . expresion COMA lista_identificadores
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 101
+    llamado_a_funcion              shift and go to state 75
+
+state 81
+
+    (31) lista_identificadores -> IDENTIFICADOR COMA . lista_identificadores
+    (28) lista_identificadores -> . IDENTIFICADOR
+    (29) lista_identificadores -> . IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array
+    (30) lista_identificadores -> . IDENTIFICADOR ASIGNACION expresion
+    (31) lista_identificadores -> . IDENTIFICADOR COMA lista_identificadores
+    (32) lista_identificadores -> . IDENTIFICADOR ASIGNACION expresion COMA lista_identificadores
+
+    IDENTIFICADOR   shift and go to state 64
+
+    lista_identificadores          shift and go to state 102
+
+state 82
+
+    (39) asignacion -> IDENTIFICADOR ASIGNACION expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PUNTO_Y_COMA    reduce using rule 39 (asignacion -> IDENTIFICADOR ASIGNACION expresion .)
+    PARENTESIS_DER  reduce using rule 39 (asignacion -> IDENTIFICADOR ASIGNACION expresion .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 83
+
+    (40) asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion . CORCHETE_DER ASIGNACION expresion
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    CORCHETE_DER    shift and go to state 103
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 84
+
+    (56) llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos . PARENTESIS_DER
+
+    PARENTESIS_DER  shift and go to state 104
+
+
+state 85
+
+    (58) lista_argumentos -> argumento . COMA lista_argumentos
+    (59) lista_argumentos -> argumento .
+
+    COMA            shift and go to state 105
+    PARENTESIS_DER  reduce using rule 59 (lista_argumentos -> argumento .)
+
+
+state 86
+
+    (60) lista_argumentos -> VACIO .
+
+    PARENTESIS_DER  reduce using rule 60 (lista_argumentos -> VACIO .)
+
+
+state 87
+
+    (61) argumento -> expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    COMA            reduce using rule 61 (argumento -> expresion .)
+    PARENTESIS_DER  reduce using rule 61 (argumento -> expresion .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 88
+
+    (62) argumento -> CADENA .
+
+    COMA            reduce using rule 62 (argumento -> CADENA .)
+    PARENTESIS_DER  reduce using rule 62 (argumento -> CADENA .)
+
+
+state 89
+
+    (57) llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos . PARENTESIS_DER
+
+    PARENTESIS_DER  shift and go to state 106
+
+
+state 90
+
+    (46) expresion -> expresion SUMA . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 107
+    llamado_a_funcion              shift and go to state 75
+
+state 91
+
+    (47) expresion -> expresion RESTA . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 108
+    llamado_a_funcion              shift and go to state 75
+
+state 92
+
+    (48) expresion -> expresion PRODUCTO . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 109
+    llamado_a_funcion              shift and go to state 75
+
+state 93
+
+    (49) expresion -> expresion DIVISION . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 110
+    llamado_a_funcion              shift and go to state 75
+
+state 94
+
+    (50) expresion -> PARENTESIS_IZQ expresion . PARENTESIS_DER
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_DER  shift and go to state 111
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 95
+
+    (51) expresion -> TAMANIO_DE PARENTESIS_IZQ . expresion PARENTESIS_DER
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 112
+    llamado_a_funcion              shift and go to state 75
+
+state 96
+
+    (54) expresion -> IDENTIFICADOR CORCHETE_IZQ . expresion CORCHETE_DER
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 113
+    llamado_a_funcion              shift and go to state 75
+
+state 97
+
+    (67) seleccion -> SI PARENTESIS_IZQ condicion . PARENTESIS_DER bloque
+
+    PARENTESIS_DER  shift and go to state 114
+
+
+state 98
+
+    (42) condicion -> expresion . MENOR_QUE expresion
+    (43) condicion -> expresion . MAYOR_QUE expresion
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    MENOR_QUE       shift and go to state 115
+    MAYOR_QUE       shift and go to state 116
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 99
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable . PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+
+    PUNTO_Y_COMA    shift and go to state 117
+
+
+state 100
+
+    (29) lista_identificadores -> IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER . ASIGNACION elementos_array
+
+    ASIGNACION      shift and go to state 118
+
+
+state 101
+
+    (30) lista_identificadores -> IDENTIFICADOR ASIGNACION expresion .
+    (32) lista_identificadores -> IDENTIFICADOR ASIGNACION expresion . COMA lista_identificadores
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PUNTO_Y_COMA    reduce using rule 30 (lista_identificadores -> IDENTIFICADOR ASIGNACION expresion .)
+    COMA            shift and go to state 119
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 102
+
+    (31) lista_identificadores -> IDENTIFICADOR COMA lista_identificadores .
+
+    PUNTO_Y_COMA    reduce using rule 31 (lista_identificadores -> IDENTIFICADOR COMA lista_identificadores .)
+
+
+state 103
+
+    (40) asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER . ASIGNACION expresion
+
+    ASIGNACION      shift and go to state 120
+
+
+state 104
+
+    (56) llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .
+
+    PUNTO_Y_COMA    reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    SUMA            reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    RESTA           reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    PRODUCTO        reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    DIVISION        reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    PARENTESIS_DER  reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    CORCHETE_DER    reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    COMA            reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    MENOR_QUE       reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    MAYOR_QUE       reduce using rule 56 (llamado_a_funcion -> IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+
+
+state 105
+
+    (58) lista_argumentos -> argumento COMA . lista_argumentos
+    (58) lista_argumentos -> . argumento COMA lista_argumentos
+    (59) lista_argumentos -> . argumento
+    (60) lista_argumentos -> . VACIO
+    (61) argumento -> . expresion
+    (62) argumento -> . CADENA
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    VACIO           shift and go to state 86
+    CADENA          shift and go to state 88
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    argumento                      shift and go to state 85
+    lista_argumentos               shift and go to state 121
+    expresion                      shift and go to state 87
+    llamado_a_funcion              shift and go to state 75
+
+state 106
+
+    (57) llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .
+
+    PUNTO_Y_COMA    reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    SUMA            reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    RESTA           reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    PRODUCTO        reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    DIVISION        reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    PARENTESIS_DER  reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    CORCHETE_DER    reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    COMA            reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    MENOR_QUE       reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+    MAYOR_QUE       reduce using rule 57 (llamado_a_funcion -> IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER .)
+
+
+state 107
+
+    (46) expresion -> expresion SUMA expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    SUMA            reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    RESTA           reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    PUNTO_Y_COMA    reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    PARENTESIS_DER  reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    CORCHETE_DER    reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    COMA            reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    MENOR_QUE       reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    MAYOR_QUE       reduce using rule 46 (expresion -> expresion SUMA expresion .)
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+  ! PRODUCTO        [ reduce using rule 46 (expresion -> expresion SUMA expresion .) ]
+  ! DIVISION        [ reduce using rule 46 (expresion -> expresion SUMA expresion .) ]
+  ! SUMA            [ shift and go to state 90 ]
+  ! RESTA           [ shift and go to state 91 ]
+
+
+state 108
+
+    (47) expresion -> expresion RESTA expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    SUMA            reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    RESTA           reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    PUNTO_Y_COMA    reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    PARENTESIS_DER  reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    CORCHETE_DER    reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    COMA            reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    MENOR_QUE       reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    MAYOR_QUE       reduce using rule 47 (expresion -> expresion RESTA expresion .)
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+  ! PRODUCTO        [ reduce using rule 47 (expresion -> expresion RESTA expresion .) ]
+  ! DIVISION        [ reduce using rule 47 (expresion -> expresion RESTA expresion .) ]
+  ! SUMA            [ shift and go to state 90 ]
+  ! RESTA           [ shift and go to state 91 ]
+
+
+state 109
+
+    (48) expresion -> expresion PRODUCTO expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    SUMA            reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    RESTA           reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    PRODUCTO        reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    DIVISION        reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    PUNTO_Y_COMA    reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    PARENTESIS_DER  reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    CORCHETE_DER    reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    COMA            reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    MENOR_QUE       reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+    MAYOR_QUE       reduce using rule 48 (expresion -> expresion PRODUCTO expresion .)
+
+  ! SUMA            [ shift and go to state 90 ]
+  ! RESTA           [ shift and go to state 91 ]
+  ! PRODUCTO        [ shift and go to state 92 ]
+  ! DIVISION        [ shift and go to state 93 ]
+
+
+state 110
+
+    (49) expresion -> expresion DIVISION expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    SUMA            reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    RESTA           reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    PRODUCTO        reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    DIVISION        reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    PUNTO_Y_COMA    reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    PARENTESIS_DER  reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    CORCHETE_DER    reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    COMA            reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    MENOR_QUE       reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+    MAYOR_QUE       reduce using rule 49 (expresion -> expresion DIVISION expresion .)
+
+  ! SUMA            [ shift and go to state 90 ]
+  ! RESTA           [ shift and go to state 91 ]
+  ! PRODUCTO        [ shift and go to state 92 ]
+  ! DIVISION        [ shift and go to state 93 ]
+
+
+state 111
+
+    (50) expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .
+
+    SUMA            reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    RESTA           reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PRODUCTO        reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    DIVISION        reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PUNTO_Y_COMA    reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PARENTESIS_DER  reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    CORCHETE_DER    reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    COMA            reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MENOR_QUE       reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MAYOR_QUE       reduce using rule 50 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+
+
+state 112
+
+    (51) expresion -> TAMANIO_DE PARENTESIS_IZQ expresion . PARENTESIS_DER
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_DER  shift and go to state 122
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 113
+
+    (54) expresion -> IDENTIFICADOR CORCHETE_IZQ expresion . CORCHETE_DER
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    CORCHETE_DER    shift and go to state 123
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 114
+
+    (67) seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER . bloque
+    (19) bloque -> . LLAVE_IZQ lista_instrucciones LLAVE_DER
+    (20) bloque -> . LLAVE_IZQ LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 30
+
+    bloque                         shift and go to state 124
+
+state 115
+
+    (42) condicion -> expresion MENOR_QUE . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 125
+    llamado_a_funcion              shift and go to state 75
+
+state 116
+
+    (43) condicion -> expresion MAYOR_QUE . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 126
+    llamado_a_funcion              shift and go to state 75
+
+state 117
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA . condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+    (42) condicion -> . expresion MENOR_QUE expresion
+    (43) condicion -> . expresion MAYOR_QUE expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    condicion                      shift and go to state 127
+    expresion                      shift and go to state 98
+    llamado_a_funcion              shift and go to state 75
+
+state 118
+
+    (29) lista_identificadores -> IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION . elementos_array
+    (33) elementos_array -> . LLAVE_IZQ lista_valores LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 129
+
+    elementos_array                shift and go to state 128
+
+state 119
+
+    (32) lista_identificadores -> IDENTIFICADOR ASIGNACION expresion COMA . lista_identificadores
+    (28) lista_identificadores -> . IDENTIFICADOR
+    (29) lista_identificadores -> . IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array
+    (30) lista_identificadores -> . IDENTIFICADOR ASIGNACION expresion
+    (31) lista_identificadores -> . IDENTIFICADOR COMA lista_identificadores
+    (32) lista_identificadores -> . IDENTIFICADOR ASIGNACION expresion COMA lista_identificadores
+
+    IDENTIFICADOR   shift and go to state 64
+
+    lista_identificadores          shift and go to state 130
+
+state 120
+
+    (40) asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION . expresion
+    (46) expresion -> . expresion SUMA expresion
+    (47) expresion -> . expresion RESTA expresion
+    (48) expresion -> . expresion PRODUCTO expresion
+    (49) expresion -> . expresion DIVISION expresion
+    (50) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (51) expresion -> . TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER
+    (52) expresion -> . NUMERO
+    (53) expresion -> . IDENTIFICADOR
+    (54) expresion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER
+    (55) expresion -> . llamado_a_funcion
+    (56) llamado_a_funcion -> . IDENTIFICADOR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+    (57) llamado_a_funcion -> . IMPRIMIR PARENTESIS_IZQ lista_argumentos PARENTESIS_DER
+
+    PARENTESIS_IZQ  shift and go to state 71
+    TAMANIO_DE      shift and go to state 72
+    NUMERO          shift and go to state 73
+    IDENTIFICADOR   shift and go to state 74
+    IMPRIMIR        shift and go to state 50
+
+    expresion                      shift and go to state 131
+    llamado_a_funcion              shift and go to state 75
+
+state 121
+
+    (58) lista_argumentos -> argumento COMA lista_argumentos .
+
+    PARENTESIS_DER  reduce using rule 58 (lista_argumentos -> argumento COMA lista_argumentos .)
+
+
+state 122
+
+    (51) expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .
+
+    SUMA            reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    RESTA           reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PRODUCTO        reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    DIVISION        reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PUNTO_Y_COMA    reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PARENTESIS_DER  reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    CORCHETE_DER    reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    COMA            reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MENOR_QUE       reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MAYOR_QUE       reduce using rule 51 (expresion -> TAMANIO_DE PARENTESIS_IZQ expresion PARENTESIS_DER .)
+
+
+state 123
+
+    (54) expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .
+
+    SUMA            reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    RESTA           reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    PRODUCTO        reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    DIVISION        reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    PUNTO_Y_COMA    reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    PARENTESIS_DER  reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    CORCHETE_DER    reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    COMA            reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    MENOR_QUE       reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+    MAYOR_QUE       reduce using rule 54 (expresion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER .)
+
+
+state 124
+
+    (67) seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .
+
+    IDENTIFICADOR   reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    IMPRIMIR        reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    RETORNAR        reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    SI              reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    PARA            reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    ENTERO          reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    VACIO           reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+    LLAVE_DER       reduce using rule 67 (seleccion -> SI PARENTESIS_IZQ condicion PARENTESIS_DER bloque .)
+
+
+state 125
+
+    (42) condicion -> expresion MENOR_QUE expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_DER  reduce using rule 42 (condicion -> expresion MENOR_QUE expresion .)
+    PUNTO_Y_COMA    reduce using rule 42 (condicion -> expresion MENOR_QUE expresion .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 126
+
+    (43) condicion -> expresion MAYOR_QUE expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_DER  reduce using rule 43 (condicion -> expresion MAYOR_QUE expresion .)
+    PUNTO_Y_COMA    reduce using rule 43 (condicion -> expresion MAYOR_QUE expresion .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 127
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion . PUNTO_Y_COMA asignacion PARENTESIS_DER bloque
+
+    PUNTO_Y_COMA    shift and go to state 132
+
+
+state 128
+
+    (29) lista_identificadores -> IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array .
+
+    PUNTO_Y_COMA    reduce using rule 29 (lista_identificadores -> IDENTIFICADOR CORCHETE_IZQ CORCHETE_DER ASIGNACION elementos_array .)
+
+
+state 129
+
+    (33) elementos_array -> LLAVE_IZQ . lista_valores LLAVE_DER
+    (34) lista_valores -> . NUMERO
+    (35) lista_valores -> . NUMERO COMA lista_valores
+
+    NUMERO          shift and go to state 134
+
+    lista_valores                  shift and go to state 133
+
+state 130
+
+    (32) lista_identificadores -> IDENTIFICADOR ASIGNACION expresion COMA lista_identificadores .
+
+    PUNTO_Y_COMA    reduce using rule 32 (lista_identificadores -> IDENTIFICADOR ASIGNACION expresion COMA lista_identificadores .)
+
+
+state 131
+
+    (40) asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion .
+    (46) expresion -> expresion . SUMA expresion
+    (47) expresion -> expresion . RESTA expresion
+    (48) expresion -> expresion . PRODUCTO expresion
+    (49) expresion -> expresion . DIVISION expresion
+
+    PUNTO_Y_COMA    reduce using rule 40 (asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion .)
+    PARENTESIS_DER  reduce using rule 40 (asignacion -> IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion .)
+    SUMA            shift and go to state 90
+    RESTA           shift and go to state 91
+    PRODUCTO        shift and go to state 92
+    DIVISION        shift and go to state 93
+
+
+state 132
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA . asignacion PARENTESIS_DER bloque
+    (39) asignacion -> . IDENTIFICADOR ASIGNACION expresion
+    (40) asignacion -> . IDENTIFICADOR CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion
+    (41) asignacion -> . IDENTIFICADOR INCREMENTO
+
+    IDENTIFICADOR   shift and go to state 136
+
+    asignacion                     shift and go to state 135
+
+state 133
+
+    (33) elementos_array -> LLAVE_IZQ lista_valores . LLAVE_DER
+
+    LLAVE_DER       shift and go to state 137
+
+
+state 134
+
+    (34) lista_valores -> NUMERO .
+    (35) lista_valores -> NUMERO . COMA lista_valores
+
+    LLAVE_DER       reduce using rule 34 (lista_valores -> NUMERO .)
+    COMA            shift and go to state 138
+
+
+state 135
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion . PARENTESIS_DER bloque
+
+    PARENTESIS_DER  shift and go to state 139
+
+
+state 136
+
+    (39) asignacion -> IDENTIFICADOR . ASIGNACION expresion
+    (40) asignacion -> IDENTIFICADOR . CORCHETE_IZQ expresion CORCHETE_DER ASIGNACION expresion
+    (41) asignacion -> IDENTIFICADOR . INCREMENTO
+
+    ASIGNACION      shift and go to state 65
+    CORCHETE_IZQ    shift and go to state 66
+    INCREMENTO      shift and go to state 67
+
+
+state 137
+
+    (33) elementos_array -> LLAVE_IZQ lista_valores LLAVE_DER .
+
+    PUNTO_Y_COMA    reduce using rule 33 (elementos_array -> LLAVE_IZQ lista_valores LLAVE_DER .)
+
+
+state 138
+
+    (35) lista_valores -> NUMERO COMA . lista_valores
+    (34) lista_valores -> . NUMERO
+    (35) lista_valores -> . NUMERO COMA lista_valores
+
+    NUMERO          shift and go to state 134
+
+    lista_valores                  shift and go to state 140
+
+state 139
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER . bloque
+    (19) bloque -> . LLAVE_IZQ lista_instrucciones LLAVE_DER
+    (20) bloque -> . LLAVE_IZQ LLAVE_DER
+
+    LLAVE_IZQ       shift and go to state 30
+
+    bloque                         shift and go to state 141
+
+state 140
+
+    (35) lista_valores -> NUMERO COMA lista_valores .
+
+    LLAVE_DER       reduce using rule 35 (lista_valores -> NUMERO COMA lista_valores .)
+
+
+state 141
+
+    (68) iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .
+
+    IDENTIFICADOR   reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    IMPRIMIR        reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    RETORNAR        reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    SI              reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    PARA            reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    ENTERO          reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    VACIO           reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+    LLAVE_DER       reduce using rule 68 (iteracion -> PARA PARENTESIS_IZQ declaracion_variable PUNTO_Y_COMA condicion PUNTO_Y_COMA asignacion PARENTESIS_DER bloque .)
+
